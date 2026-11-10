@@ -1,145 +1,111 @@
-# Portfolio Website
-
-A lightweight, single-page developer portfolio built with **HTML, CSS, JavaScript, Bootstrap 4, and jQuery**, and published as a static website through GitHub Pages.
-
-The site is organized as a long-scrolling page. Its current implementation includes a hero introduction, education and technical skills, contact information, programming-contest profiles, experience details, and links to downloadable CV/resume documents.
-
-- **Live website:** https://shatilsarower.github.io/
-- **Repository:** https://github.com/shatilsarower/shatilsarower.github.io
-- **Default branch reviewed:** `master`
-- **Application type:** Static website
-- **Build system:** None required
-
-> [!IMPORTANT]
-> **Content and ownership check required before presenting this as a personal portfolio.** The currently published HTML still contains another person's portfolio identity, biography, social profiles, contact details, education history, contest accounts, and external CV/resume links. This README describes the code currently in the repository; it does not imply that the published biography or linked documents belong to the repository owner. Replace or remove all inherited personal information before sharing the site as your own.
+This README is a consolidated, modern reference for the `shatilsarower.github.io` repository and the key projects on the profile. It is designed as a single file you can download, commit, and use immediately.
 
 ---
 
-## Table of contents
+# 🚀 Sarwar Murshed Shatil — Developer Portfolio & Project Showcase
 
-- [Overview](#overview)
-- [Current implementation](#current-implementation)
-- [Features](#features)
-- [Technology stack](#technology-stack)
-- [Repository structure](#repository-structure)
-- [How the website works](#how-the-website-works)
-- [Run locally](#run-locally)
-- [Customize the portfolio](#customize-the-portfolio)
-- [Deploy with GitHub Pages](#deploy-with-github-pages)
-- [Testing and verification](#testing-and-verification)
-- [Known limitations and recommended fixes](#known-limitations-and-recommended-fixes)
-- [Security, privacy, and maintenance](#security-privacy-and-maintenance)
-- [Contributing](#contributing)
-- [License and third-party assets](#license-and-third-party-assets)
+> **Live site:** [https://shatilsarower.github.io/](https://shatilsarower.github.io/)  
+> **Repository:** [https://github.com/shatilsarower/shatilsarower.github.io](https://github.com/shatilsarower/shatilsarower.github.io)  
+> **Profile:** [https://github.com/shatilsarower](https://github.com/shatilsarower)
+
+A lightweight, single-page developer portfolio built with **HTML5, CSS3, JavaScript, Bootstrap 4, and jQuery**, published as a static site through **GitHub Pages**. The repository also serves as the central hub for the projects pinned on the profile — Flutter applications covering state management, API integration, UI design, Firebase backends, and multi-platform development.
 
 ---
 
-## Overview
+## 📑 Table of Contents
 
-This repository contains a browser-based portfolio website. It does not use a server-side application, database, API layer, frontend framework, package manager, or compilation step. The browser loads `index.html`, then loads the stylesheet, image, icon, and JavaScript files referenced by that page.
+1. [Portfolio Website Architecture](#1-portfolio-website-architecture)
+2. [Project Ecosystem — Overview](#2-project-ecosystem--overview)
+3. [Project 1: chatapp3 — Firebase-Powered Chat](#3-project-1-chatapp3--firebase-powered-chat)
+4. [Project 2: NewsApp — API-Driven News Reader](#4-project-2-newsapp--api-driven-news-reader)
+5. [Project 3: BMI Calculator — Custom Flutter UI](#5-project-3-bmi-calculator--custom-flutter-ui)
+6. [Project 4: managment — GetX State Management](#6-project-4-managment--getx-state-management)
+7. [Project 5: coffee — Flutter UI Showcase](#7-project-5-coffee--flutter-ui-showcase)
+8. [Project 6: Google-Homepage — Multi-Platform Flutter Clone](#8-project-6-google-homepage--multi-platform-flutter-clone)
+9. [Downloadable Files](#9-downloadable-files)
+10. [License & Attribution](#10-license--attribution)
 
-The site is intended to act as a compact professional profile where a visitor can:
+---
 
-1. Read an introductory profile.
-2. Review education and technical skills.
-3. Find contact and social links.
-4. Explore programming-contest and problem-solving profiles.
-5. Review experience information.
-6. Open the linked CV and resume documents.
+## 1. Portfolio Website Architecture
 
-The project is deliberately simple to run and host: a static web server is sufficient for local development, and GitHub Pages can serve the files without a separate application server.
+### 1.1 Overview
 
-## Current implementation
+The portfolio is a **static, no-build-step website**. It does not use a server-side application, database, API layer, frontend framework, package manager, or compilation step. The browser loads `index.html`, then loads the referenced stylesheet, image, icon, and JavaScript files.
 
-The active page is `index.html`. It contains the page sections and the content itself; the project does not currently separate profile data into JSON, Markdown, a CMS, or reusable frontend components.
+The site acts as a compact professional profile where visitors can read an introductory profile, review education and technical skills, find contact and social links, explore programming-contest profiles, review experience, and open linked CV/resume documents.
 
-| Page area | Current implementation | Status |
+### 1.2 How the Website Works — Request Flow
+
+```mermaid
+sequenceDiagram
+    participant Browser
+    participant StaticHost as GitHub Pages (Static Host)
+    participant CDN as External CDNs (Font Awesome, Google Fonts)
+
+    Browser->>StaticHost: GET /index.html
+    StaticHost-->>Browser: index.html (markup + asset references)
+    Browser->>StaticHost: GET /assets/css/bootstrap.min.css
+    StaticHost-->>Browser: Bootstrap 4 styles
+    Browser->>StaticHost: GET /assets/css/style.css
+    StaticHost-->>Browser: Theme styles
+    Browser->>CDN: GET Font Awesome CSS
+    CDN-->>Browser: Icon font styles
+    Browser->>CDN: GET Google Fonts (Montserrat, Open Sans)
+    CDN-->>Browser: Font files
+    Browser->>StaticHost: GET /assets/js/vendor/jquery-1.12.4.min.js
+    StaticHost-->>Browser: jQuery
+    Browser->>StaticHost: GET /assets/js/main.js
+    StaticHost-->>Browser: Interaction scripts
+    Browser->>Browser: Execute main.js — preloader, sticky nav, progress bars, scroll-spy
+    Browser-->>User: Rendered single-page portfolio
+```
+
+### 1.3 JavaScript Initialization Flow
+
+The `main.js` script registers handlers for page load and scroll events. Its behavior includes hiding the preloader after the window loads, adding/removing the `sticky` class on the navigation bar, updating the active navigation item based on scroll position, closing the collapsed navigation after a link click, animating skill progress bars when they enter the viewport, and writing the document’s last-modified date and current page URL into the footer.
+
+```mermaid
+flowchart TD
+    A[Window Load Event] --> B[Hide Preloader]
+    A --> C[Initialize Scroll Handlers]
+
+    C --> D[Sticky Navigation]
+    C --> E[Active Section Detection]
+    C --> F[Progress Bar Animation]
+    C --> G[Back-to-Top Control]
+    C --> H[Footer Metadata]
+
+    D --> D1[Add 'sticky' class when scrolled past threshold]
+    E --> E1[Highlight nav link matching current section]
+    F --> F1[Set .progress_line width from data-width attribute]
+    G --> G1[Show/hide based on scroll position]
+    H --> H1[Write document.lastModified into #modification]
+    H --> H2[Write window.location.href into #location]
+```
+
+### 1.4 Technology Stack
+
+| Technology | Role in the Portfolio | Version / Note |
 |---|---|---|
-| Home / hero | Introductory heading, short biography, and hero image | Active |
-| About | Education details and technical-skill progress bars | Active |
-| Projects | A project showcase exists in the source as commented-out HTML | **Not rendered** |
-| Contact | Static contact details and external profile links | Active |
-| Experience | Contest profiles, contest history, problem-solving counts, and other experience | Active |
-| CV / resume | External links to CV and resume documents | Active |
-| Footer | Social links, section navigation, email, last-modified date, and page URL | Active |
+| **HTML5** | Page structure and portfolio content | — |
+| **CSS3** | Theme styling, layout, responsive rules, visual effects | — |
+| **JavaScript** | Page interactions and dynamic UI behavior | Vanilla JS + jQuery plugins |
+| **Bootstrap** | Responsive grid, layout utilities, component styling | 4.3.1 |
+| **jQuery** | DOM manipulation and event handling | 1.12.4 |
+| **Popper.js** | Bootstrap 4 positioning dependency | — |
+| **Modernizr** | Browser feature detection | 3.7.1 |
+| **jQuery Appear** | Viewport-entry detection for skill bars | — |
+| **jQuery Easing** | Easing functions for smooth scrolling | — |
+| **Scrolling Nav** | Navigation/scrolling helper | — |
+| **Animate.css** | CSS animation classes | — |
+| **LineIcons** | Icon font/classes | — |
+| **Font Awesome** | Additional icons (CDN) | 5.8.1 |
+| **Google Fonts** | Montserrat and Open Sans | Loaded from CDN |
 
-The navigation currently includes a **Projects** link even though the corresponding section is commented out. Selecting that link therefore does not lead to an active project section.
+### 1.5 Repository Structure (Runtime-Oriented)
 
-## Features
-
-### Single-page navigation
-
-The website uses in-page anchors to move between the main sections. The navigation links use the `page-scroll` class, which is also used by the JavaScript to keep the active navigation item in sync with the visitor's scroll position.
-
-### Introductory hero section
-
-The hero area presents a short introduction and a profile/illustration image. The image is loaded from the local theme asset directory.
-
-### Education and skills
-
-The About section contains education information and a list of technical skills. Skill bars use `data-width` attributes, and the JavaScript sets the width of each `.progress_line` element when it enters the viewport.
-
-The displayed progress-bar widths are presentation values embedded in the HTML. They should not be interpreted as independently verified proficiency scores.
-
-### Contact and external profiles
-
-The Contact section and footer contain static links to external communication and social-profile services. These destinations are maintained directly in `index.html`; there is no contact-form backend or message-submission service.
-
-### Experience and contest profiles
-
-The Experience section contains external programming-profile links and manually written contest/problem-solving information. These values are static and do not update automatically when external profile statistics change.
-
-### CV and resume links
-
-The CV and resume controls open externally hosted documents. The destination URLs are hard-coded in the HTML and should be checked periodically to ensure that they are still valid and publicly accessible.
-
-### Visual effects and page behavior
-
-The page includes a preloader, a sticky navigation style, scroll-aware active navigation, animated progress bars, and smooth scrolling behavior. These behaviors are implemented through the local JavaScript assets and CSS.
-
----
-
-## Technology stack
-
-The following technologies and libraries are referenced by the current source.
-
-| Technology / library | Role in this project |
-|---|---|
-| HTML5 | Page structure and portfolio content |
-| CSS3 | Theme styling, layout, responsive rules, and visual effects |
-| JavaScript | Page interactions and dynamic UI behavior |
-| [Bootstrap 4.3.1](https://getbootstrap.com/docs/4.3/) | Responsive grid, layout utilities, and component styling |
-| [jQuery 1.12.4](https://jquery.com/) | DOM manipulation and event handling used by the theme scripts |
-| [Popper.js](https://popper.js.org/) | Bootstrap 4 positioning dependency |
-| [Modernizr 3.7.1](https://modernizr.com/) | Browser feature detection |
-| jQuery Appear | Detects when elements enter the viewport; used by skill progress bars |
-| jQuery Easing | Easing functions used by scrolling behavior |
-| Scrolling Nav | Navigation/scrolling helper script |
-| Animate.css | CSS animation classes referenced by the page |
-| LineIcons | Icon font/classes used in the interface |
-| [Font Awesome 5.8.1](https://fontawesome.com/v5) | Additional icons, loaded from an external CDN |
-| Google Fonts | Montserrat and Open Sans font families, imported by the theme stylesheet |
-
-### Dependency model
-
-The project uses local static assets for most CSS and JavaScript dependencies. It also requests external resources at runtime:
-
-- Font Awesome CSS from `use.fontawesome.com`.
-- Google Fonts from `fonts.googleapis.com`.
-
-A visitor needs internet access for those externally hosted resources to load. The portfolio's main HTML, theme styles, scripts, and referenced local images are stored in the repository.
-
-### No build step
-
-There is no frontend build pipeline in the repository's root configuration. A developer does not need to run `npm install`, `npm run build`, or a framework-specific command to serve the current site.
-
----
-
-## Repository structure
-
-The root-level repository view contains `index.html` and the nested theme directory. The following is a **runtime-oriented outline of the paths referenced by `index.html`**, not a claim that it lists every file included in the theme directory.
-
-```text
+```
 shatilsarower.github.io/
 ├── index.html
 └── new resume/
@@ -166,217 +132,25 @@ shatilsarower.github.io/
                     └── modernizr-3.7.1.min.js
 ```
 
-### Important file responsibilities
+> **Path note:** The asset paths include directory names with spaces (`new resume`, `jackson-master 2`). These work as referenced by the current HTML, but they are more awkward to maintain and easier to mistype.
 
-| File or directory | Responsibility |
-|---|---|
-| `index.html` | Main page markup, text content, navigation, external links, and asset references |
-| `assets/css/bootstrap.min.css` | Bootstrap 4.3.1 framework styles |
-| `assets/css/default.css` | Theme-level default styles |
-| `assets/css/style.css` | Main portfolio theme and responsive styling |
-| `assets/css/animate.css` | CSS animation definitions |
-| `assets/css/lineicons.css` | LineIcons icon definitions |
-| `assets/images/` | Images referenced by the page, including the favicon and hero image |
-| `assets/js/main.js` | Preloader, sticky navigation, active section navigation, progress bars, and page metadata display |
-| `assets/js/vendor/` | Vendor scripts, including jQuery and Modernizr |
-| Other files under `assets/js/` | Bootstrap and supporting scrolling/viewport scripts |
+### 1.6 Run Locally
 
-> **Path note:** The current asset paths include directory names with spaces (`new resume` and `jackson-master 2`). Those paths work as referenced by the current HTML, but they are more awkward to maintain and easier to mistype. Renaming the directories requires updating every matching `href` and `src` path in `index.html`.
-
----
-
-## How the website works
-
-### 1. Browser entry point
-
-When a visitor opens the site, the browser requests `index.html` from the static host. The document loads the stylesheets in the `<head>` and the JavaScript files near the end of the `<body>`.
-
-### 2. Styling and layout
-
-Bootstrap supplies the responsive grid and layout utilities. The theme stylesheets define the visual identity of the page, including typography, spacing, section headings, buttons, hero styling, and footer styling.
-
-### 3. JavaScript initialization
-
-The page loads jQuery and the supporting scripts before `main.js`. The main script registers handlers for the page load and scroll events.
-
-The current `main.js` behavior includes:
-
-- Hiding the preloader after the window has loaded.
-- Adding or removing the `sticky` class on the navigation bar based on scroll position.
-- Updating the active navigation item based on the current section position.
-- Closing the collapsed navigation after a navigation link is clicked.
-- Animating skill progress bars when they appear in the viewport.
-- Showing and hiding a back-to-top control when one is present in the markup.
-- Writing the document's last-modified date and current page URL into the footer elements with IDs `modification` and `location`.
-
-### 4. Static content
-
-Profile text, education history, skill labels, external profile links, experience details, and document URLs are written directly in `index.html`. To update those details, edit the relevant HTML section and commit the change.
-
----
-
-## Run locally
-
-You only need Git and a local static HTTP server. No runtime installation of Node.js, npm, or a framework is required.
-
-### Prerequisites
-
-- Git
-- Python 3 (for the example local server below), or another static file server
-- A modern web browser
-
-### Clone the repository
+You only need **Git** and a **local static HTTP server**. No Node.js, npm, or framework installation is required.
 
 ```bash
 git clone https://github.com/shatilsarower/shatilsarower.github.io.git
 cd shatilsarower.github.io
-```
-
-### Start a local server with Python
-
-```bash
 python3 -m http.server 8000
 ```
 
-Open the following address in your browser:
+Open `http://localhost:8000` in the browser. Using an HTTP server is preferable to opening `index.html` directly with a `file://` URL because it more closely matches production.
 
-```text
-http://localhost:8000
-```
+### 1.7 Deployment with GitHub Pages
 
-Stop the server with `Ctrl + C` in the terminal.
+The repository name follows GitHub’s user-site naming convention: `shatilsarower.github.io`. The site is currently reachable at `https://shatilsarower.github.io/`.
 
-### Alternative local servers
-
-Any static HTTP server that serves the repository root will work. For example, PHP can serve the current directory when installed:
-
-```bash
-php -S localhost:8000
-```
-
-Using an HTTP server is preferable to opening `index.html` directly with a `file://` URL because it more closely matches how the site is served in production.
-
----
-
-## Customize the portfolio
-
-Most customization is performed in `index.html`. The existing project does not use a separate content file or admin interface.
-
-### 1. Update the browser title and metadata
-
-In the `<head>` section, replace the existing page title and add a meaningful meta description.
-
-```html
-<title>Your Name | Portfolio</title>
-<meta
-  name="description"
-  content="Portfolio of Your Name, highlighting professional experience, technical skills, and selected projects."
->
-```
-
-The current description value is empty, so search engines and link previews do not receive a useful page summary from that field.
-
-### 2. Replace the hero content
-
-Find the section with `id="home"` and update:
-
-- The greeting and display name.
-- The short professional introduction.
-- The hero image and its alternative text.
-
-Keep the image path relative to the repository root, or update it if the image is moved.
-
-### 3. Update education and skills
-
-Find the section with `id="about"`. Replace the existing education details and skill labels with information that is accurate, current, and appropriate to publish.
-
-For each skill bar, update its `data-width` value. Keep it in the range from `0` to `100` if the stylesheet/script expects a percentage. Use skill bars carefully: a visual percentage can imply a level of measurement that the page does not actually define.
-
-### 4. Add or restore the Projects section
-
-The source contains a project-section example, but the entire section is currently inside an HTML comment. It is therefore not rendered by the browser.
-
-To publish projects:
-
-1. Decide which projects are relevant to the portfolio.
-2. Restore or rebuild the section with `id="projects"`.
-3. Replace all demonstration project descriptions and links with verified project details.
-4. Add links to source repositories and live demos where they exist.
-5. Check that the Projects navigation link points to the section's actual ID.
-
-A useful project entry normally explains the problem, the user's role, the technologies used, the important implementation decisions, and the result. Avoid listing a technology merely because it appears in a tutorial or starter template.
-
-### 5. Update contact and social links
-
-Find the section with `id="contact"` and the social-link lists in the hero/footer markup. Update or remove every inherited email address, telephone number, social profile, messaging handle, and university address.
-
-Only publish contact details that the portfolio owner intends to make public. Check each destination by opening it in a browser.
-
-### 6. Update experience and external coding profiles
-
-Find the section with `id="experience"`. Replace the existing contest profile URLs, handles, contest history, problem-solving counts, and experience descriptions.
-
-Counts should be current and supportable. If the statistics are not maintained, remove the counts rather than leaving stale figures on a public portfolio.
-
-### 7. Update CV and resume documents
-
-Find the section with `id="achievements"`. Replace the existing external document URLs with links to documents that:
-
-- Belong to the portfolio owner.
-- Are intended for public sharing.
-- Do not expose private information that should not be public.
-- Have permissions that allow the intended audience to view them.
-
-Test the links in a private/incognito browser window to ensure they do not depend on the owner's signed-in session.
-
-### 8. Replace the theme images
-
-The current page references a favicon and hero image inside the theme's `assets/images/` directory. Replace them with appropriately sized, optimized images and update the corresponding paths if the filenames change.
-
-Use descriptive `alt` text for meaningful images. If an image is purely decorative, use an empty `alt` attribute (`alt=""`).
-
-### 9. Update navigation and footer labels
-
-The header and footer contain anchor links to page sections. When adding, removing, or renaming a section, update both navigation areas so that each link points to an existing unique ID.
-
-### 10. Keep external links safe
-
-Links that open a new tab should include `rel="noopener noreferrer"` alongside `target="_blank"`.
-
-```html
-<a
-  href="https://example.com"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  External profile
-</a>
-```
-
----
-
-## Deploy with GitHub Pages
-
-The repository name follows GitHub's user-site naming convention: `shatilsarower.github.io`. The site is currently reachable at:
-
-**https://shatilsarower.github.io/**
-
-For a standard branch-based GitHub Pages deployment, the source files should be served from the repository's deployment branch and root directory.
-
-### Verify the Pages configuration
-
-1. Open the repository on GitHub.
-2. Go to **Settings → Pages**.
-3. Check the configured build and deployment source.
-4. For branch-based deployment, select the `master` branch and the `/(root)` directory if that is where the published files are maintained.
-5. Save the configuration if a change is required.
-6. Check the Pages deployment status and open the published URL after the deployment completes.
-
-GitHub may take a short time to publish a new commit. The Actions/Pages deployment status is the source of truth for whether a deployment succeeded.
-
-### Publish an update
-
-After editing the files and verifying the site locally:
+**Publish an update:**
 
 ```bash
 git status
@@ -385,155 +159,478 @@ git commit -m "Update portfolio content"
 git push origin master
 ```
 
-If you add, remove, or rename other files, stage those intended changes as well. Review `git status` before committing so that unrelated files are not accidentally published.
-
-### Deployment considerations
-
-- The site is static; no server process needs to remain running after deployment.
-- Do not commit secrets, passwords, private keys, or API tokens. Anything committed to a public repository should be treated as public.
-- External fonts and icon resources may be blocked by privacy tools or network policies. The page should remain readable if those resources fail to load.
-- Check the deployed page after each significant change, not only the local copy.
+For standard branch-based deployment, the source files should be served from the `master` branch and the root directory.
 
 ---
 
-## Testing and verification
+## 2. Project Ecosystem — Overview
 
-There is no automated test suite or build/test command visible in the repository's root configuration. For now, use a repeatable manual verification process before publishing.
+The profile pins six repositories that collectively demonstrate a focused journey through **Flutter development** — from Firebase-backed real-time chat to API-driven data consumption, custom UI engineering, state management with GetX, and multi-platform deployment.
 
-### Functional checklist
-
-- [ ] The home page loads without missing local assets.
-- [ ] The browser title and meta description are correct.
-- [ ] All header navigation links lead to existing sections.
-- [ ] All footer navigation links lead to existing sections.
-- [ ] The Projects link is removed or points to an active Projects section.
-- [ ] The sticky navigation behaves correctly while scrolling.
-- [ ] The active navigation state changes as expected.
-- [ ] The preloader disappears after the page has loaded.
-- [ ] Skill progress bars display their intended widths.
-- [ ] The hero image and favicon load successfully.
-- [ ] Every social, contact, project, CV, and resume link opens the intended destination.
-- [ ] External links that open a new tab use `rel="noopener noreferrer"`.
-- [ ] No inherited personal information remains unintentionally published.
-
-### Responsive checklist
-
-Check the page at common viewport widths, including a narrow mobile screen, a tablet-sized screen, and a desktop screen.
-
-- [ ] Navigation remains visible and usable on mobile.
-- [ ] The page does not scroll horizontally because of overflowing content.
-- [ ] Text remains readable without zooming.
-- [ ] Images scale within their containers.
-- [ ] Buttons and links have usable touch targets.
-- [ ] Long email addresses, profile URLs, and document links do not break the layout.
-
-### Accessibility and markup checklist
-
-- [ ] Use a logical heading hierarchy.
-- [ ] Give meaningful images descriptive alternative text.
-- [ ] Ensure links and controls can be reached and used with a keyboard.
-- [ ] Make focus states visible.
-- [ ] Use descriptive link text instead of ambiguous labels where possible.
-- [ ] Do not use a `<button>` merely as a wrapper for an `<a>` element; use the appropriate interactive element directly.
-- [ ] Validate the HTML and correct invalid nesting or unmatched tags.
-- [ ] Check text/background contrast.
-
-### Browser checks
-
-At minimum, verify current versions of Chromium-based browsers, Firefox, and Safari where available. Browser rendering can differ, especially around older framework styles and externally loaded fonts.
+```mermaid
+mindmap
+  root((shatilsarower<br/>Project Ecosystem))
+    Backend & Realtime
+      chatapp3
+        Firebase
+        Real-time messaging
+    API & Data
+      NewsApp
+        NewsAPI.org
+        HTTP requests
+        7 news categories
+    UI & Custom Design
+      BMI Calculator
+        Custom widgets
+        Multi-screen navigation
+        GestureDetector
+      coffee
+        Modular UI
+        Component-based architecture
+      Google-Homepage
+        Multi-platform
+        Web, Android, iOS, Linux, macOS, Windows
+    State Management
+      managment
+        GetX
+        Reactive state
+        Dependency injection
+```
 
 ---
 
-## Known limitations and recommended fixes
+## 3. Project 1: chatapp3 — Firebase-Powered Chat
 
-The following items are based on the currently reviewed source and published page. They are not hypothetical future features.
+**Repository:** [https://github.com/shatilsarower/chatapp3](https://github.com/shatilsarower/chatapp3)
 
-| Priority | Finding | Why it matters | Recommended action |
-|---|---|---|---|
-| Critical | The published page still contains another person's identity and personal details | It can misrepresent the site owner and expose information that should not be associated with this repository | Replace or remove all inherited biography, contact, education, profile, and document details before presenting the site as your portfolio |
-| High | The Projects section is commented out while the navigation still links to `#projects` | Visitors can select a navigation item that has no active target | Restore a real Projects section or remove the Projects links from the header and footer |
-| High | The responsive navigation markup does not show a Bootstrap `.navbar-toggler` button | The collapsed navigation may not have a visible control on smaller screens | Add a correctly wired Bootstrap toggler and verify keyboard/mobile behavior |
-| High | The page uses older frontend dependencies, including jQuery 1.12.4 and Bootstrap 4.3.1 | Older dependencies can have compatibility, maintenance, and security implications | Plan a tested dependency refresh; do not replace vendor files blindly |
-| Medium | The page title is still `Portfolio of Asad`, and the meta description is empty | Browser tabs, search listings, and link previews can show incorrect or incomplete information | Set an accurate title and concise description |
-| Medium | Several external links and document URLs are hard-coded | Links can become stale or point to the wrong person's profiles/documents | Audit and test each destination during content updates |
-| Medium | New-tab links use `target="_blank"` without consistently setting `rel` | Older browser contexts may expose the opener relationship | Add `rel="noopener noreferrer"` to new-tab links |
-| Medium | The `wow` animation classes and `data-wow-*` attributes are present, but no WOW.js script is loaded in the page's script list | Those attributes alone do not initialize WOW.js animations | Either load and initialize a compatible animation library or remove unused animation hooks |
-| Medium | Asset paths contain spaces and deeply nested template folders | Paths are harder to maintain and more error-prone to update | Consider moving assets to a simple root-level `assets/` directory and update all references together |
-| Low | Project examples remain in commented HTML | They make the source harder to read and can be mistaken for active content | Remove obsolete examples or restore only the project entries that are actually intended to be published |
-| Low | Skill progress bars use manually assigned widths | Visitors may interpret decorative values as measured proficiency | Explain the scale or replace the bars with concrete evidence and project examples |
-| Low | The footer dynamically prints the page URL and last-modified date | The visible values may be unnecessary and do not communicate a meaningful portfolio update history | Keep them only if they provide value; otherwise replace them with a normal copyright/ownership footer |
+### 3.1 Description
 
-### Suggested improvement order
+A Flutter chat application built on **Firebase** as the backend. The project demonstrates real-time data synchronization, user authentication, and cloud messaging — the core building blocks of a production chat system.
 
-1. **Make the content accurate and safe to publish.** Replace the inherited identity, contact data, social links, and document URLs.
-2. **Fix navigation and mobile usability.** Restore the Projects target or remove its link, and add a working responsive navigation toggler.
-3. **Refresh the dependencies deliberately.** Verify the Bootstrap/jQuery compatibility requirements and test the page after each upgrade.
-4. **Improve the portfolio content.** Publish selected projects with source links, live demos, clear descriptions, and evidence of the work completed.
-5. **Add lightweight quality checks.** HTML validation, link checking, responsive browser checks, and an automated Pages deployment check would make future updates more reliable.
+### 3.2 Architecture Flow
 
----
+```mermaid
+flowchart LR
+    subgraph Client["Flutter Client"]
+        UI[Chat UI]
+        Auth[Authentication Screen]
+        MessageList[Message List]
+        Input[Message Input]
+    end
 
-## Security, privacy, and maintenance
+    subgraph Firebase["Firebase Backend"]
+        FA[Firebase Auth]
+        FS[Cloud Firestore]
+        FCM[Cloud Messaging]
+    end
 
-### Public-repository rule
+    Auth -->|Sign in / Sign up| FA
+    FA -->|User session| UI
+    Input -->|Send message| FS
+    FS -->|Real-time listener| MessageList
+    MessageList -->|Display| UI
+    FS -->|Trigger| FCM
+    FCM -->|Push notification| Client
+```
 
-A public Git repository is not a private storage location. Do not commit passwords, authentication tokens, private keys, private documents, or personal data that should not be publicly accessible.
+### 3.3 Key Technical Decisions
 
-### Personal information
-
-The current page includes direct contact and profile information. Review every visible field and external document link before publishing. A portfolio should disclose only information that the owner has chosen to make public.
-
-### Third-party dependencies
-
-Some libraries are stored in the repository, while fonts and Font Awesome are loaded from third-party services. Keep a record of dependency versions and their licenses. Upgrade one dependency at a time and test navigation, layout, and JavaScript behavior after each change.
-
-### External links
-
-Check links periodically. Remove destinations that are no longer maintained, and make sure external pages and downloadable documents are intentionally public.
-
-### Content maintenance
-
-A useful maintenance routine is to review the portfolio whenever a project, role, skill, profile URL, or resume changes. Remove outdated claims rather than allowing old details to accumulate.
+| Decision | Rationale |
+|---|---|
+| **Firebase Auth** | Offloads authentication complexity; supports email/password and federated providers. |
+| **Cloud Firestore** | Real-time listeners eliminate the need for polling; offline persistence improves reliability on unstable networks. |
+| **Flutter UI** | Single codebase for Android and iOS; hot reload accelerates iteration on chat interactions. |
 
 ---
 
-## Contributing
+## 4. Project 2: NewsApp — API-Driven News Reader
 
-This repository is primarily a personal static website. Changes should preserve the lightweight deployment model unless there is a clear reason to introduce a build system or framework.
+**Repository:** [https://github.com/shatilsarower/NewsApp](https://github.com/shatilsarower/NewsApp)
 
-For a proposed change:
+### 4.1 Description
 
-1. Create a focused branch.
-2. Make the smallest relevant update.
-3. Run the site locally using the instructions above.
-4. Complete the functional, responsive, and privacy checklists.
-5. Commit with a descriptive message and open a pull request if collaboration is enabled.
+A Flutter application that displays **7 types of news** fetched from the **NewsAPI.org** REST API. It demonstrates HTTP requests, JSON parsing, model classes, and dynamic list rendering.
 
-Avoid adding a dependency for behavior that can be implemented safely with the existing platform APIs.
+### 4.2 Data Flow
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant UI as Flutter UI
+    participant Service as News Service
+    participant API as NewsAPI.org
+
+    User->>UI: Open category (e.g., Technology)
+    UI->>Service: requestNews(category)
+    Service->>API: GET /v2/top-headlines?category=technology&apiKey=...
+    API-->>Service: JSON response (articles array)
+    Service->>Service: Parse JSON → List<Article>
+    Service-->>UI: Return List<Article>
+    UI->>UI: Build ListView with article cards
+    UI-->>User: Display headlines, images, sources
+```
+
+### 4.3 Category Routing
+
+```mermaid
+flowchart TD
+    A[App Launch] --> B[Load Default Category]
+    B --> C{User selects category}
+    C -->|Business| D[Fetch Business News]
+    C -->|Technology| E[Fetch Technology News]
+    C -->|Sports| F[Fetch Sports News]
+    C -->|Health| G[Fetch Health News]
+    C -->|Science| H[Fetch Science News]
+    C -->|Entertainment| I[Fetch Entertainment News]
+    C -->|General| J[Fetch General News]
+
+    D & E & F & G & H & I & J --> K[Parse JSON]
+    K --> L[Update UI State]
+    L --> M[Render Article List]
+```
+
+### 4.4 Key Learning Outcomes
+
+- Consuming a third-party REST API with `http` package
+- Handling asynchronous operations with `FutureBuilder` and `async/await`
+- Mapping JSON to Dart model classes
+- Managing loading, success, and error states in the UI
 
 ---
 
-## License and third-party assets
+## 5. Project 3: BMI Calculator — Custom Flutter UI
 
-No root-level `LICENSE` file was visible in the repository view reviewed for this README. The site also includes third-party libraries and theme assets. Before redistributing the repository or reusing its theme assets in another project:
+**Repository:** [https://github.com/shatilsarower/bmi-calculator](https://github.com/shatilsarower/bmi-calculator)
+
+### 5.1 Description
+
+A multi-screen Body Mass Index calculator inspired by a **Ruben Vaalt** design. The project focuses on **custom widget composition**, **theme consistency**, and **navigation** rather than complex business logic.
+
+### 5.2 Screen Navigation Flow
+
+```mermaid
+flowchart TD
+    A[Input Screen] --> B{User adjusts values}
+    B --> C[Gender Selection]
+    B --> D[Height Slider]
+    B --> E[Weight & Age Steppers]
+    C & D & E --> F[Calculate Button]
+    F --> G[Compute BMI]
+    G --> H[Result Screen]
+    H --> I[Display BMI Value]
+    H --> J[Display Health Category]
+    H --> K[Display Interpretation]
+    H --> L[Re-calculate Button]
+    L --> A
+```
+
+### 5.3 Widget Composition Strategy
+
+```mermaid
+classDiagram
+    class BMICalculatorApp {
+        +MaterialApp
+        +ThemeData
+    }
+    class InputScreen {
+        +GenderSelector
+        +HeightSlider
+        +WeightAgeStepper
+        +CalculateButton
+    }
+    class ResultScreen {
+        +BMIValue
+        +CategoryLabel
+        +Interpretation
+        +RecalculateButton
+    }
+    class ReusableCard {
+        +Color colour
+        +Widget cardChild
+        +Function onPress
+    }
+
+    BMICalculatorApp --> InputScreen
+    BMICalculatorApp --> ResultScreen
+    InputScreen --> ReusableCard
+    ResultScreen --> ReusableCard
+```
+
+### 5.4 What the Project Demonstrates
+
+- Flutter themes for coherent branding
+- Multi-page apps with `Navigator` and routes
+- Extracting and refactoring widgets
+- Passing functions as parameters
+- `GestureDetector` for non-tap gestures
+- Custom colour palettes with hex codes
+- `const` vs `final` in Dart
+
+---
+
+## 6. Project 4: managment — GetX State Management
+
+**Repository:** [https://github.com/shatilsarower/managment](https://github.com/shatilsarower/managment)
+
+### 6.1 Description
+
+A dedicated exploration of **state management in Flutter using GetX**. The project serves as a learning ground for reactive state, dependency injection, and context-free navigation.
+
+### 6.2 GetX Reactive State Flow
+
+```mermaid
+flowchart LR
+    subgraph Reactive["Reactive State Layer"]
+        O[Observable Variable<br/>.obs]
+        C[Controller<br/>GetxController]
+    end
+
+    subgraph UI["UI Layer"]
+        OB[Obx Widget]
+        GB[GetBuilder Widget]
+    end
+
+    subgraph Navigation["Navigation Layer"]
+        GR[Get.to / Get.off]
+        GS[Get.snackbar / Get.dialog]
+    end
+
+    C -->|updates| O
+    O -->|notifies| OB
+    O -->|notifies| GB
+    OB -->|rebuilds| UI
+    GB -->|rebuilds| UI
+    C -->|triggers| GR
+    C -->|triggers| GS
+```
+
+### 6.3 Dependency Injection with GetX
+
+```mermaid
+flowchart TD
+    A[App Initialization] --> B[Get.put Permanent Controller]
+    A --> C[Get.lazyPut Lazy Controller]
+
+    B --> D[Controller available globally]
+    C --> E[Controller created on first access]
+
+    D --> F[UI accesses controller via Get.find]
+    E --> F
+    F --> G[Controller state shared across screens]
+```
+
+### 6.4 Key Learning Outcomes
+
+- `GetxController` lifecycle management
+- Reactive state with `.obs` and `Obx`
+- Dependency injection with `Get.put`, `Get.lazyPut`, and `Get.find`
+- Context-free navigation and dialogs/snackbars/bottom sheets
+- Separation of business logic from UI
+
+---
+
+## 7. Project 5: coffee — Flutter UI Showcase
+
+**Repository:** [https://github.com/shatilsarower/coffee](https://github.com/shatilsarower/coffee)
+
+### 7.1 Description
+
+A visually rich, coffee-themed Flutter UI concept. The project demonstrates **clean, modular UI design**, smooth transitions, and component-based architecture. It is intended as both inspiration and a foundation for UI-centric Flutter experiments.
+
+### 7.2 UI Screen Flow
+
+```mermaid
+flowchart TD
+    A[Home / Coffee Selection] --> B[Product Detail]
+    B --> C[Customization Options]
+    C --> D[Order Summary]
+    D --> E[Checkout / Confirmation]
+
+    A --> F[Search / Filter]
+    F --> A
+
+    A --> G[Favorites]
+    G --> A
+
+    A --> H[Profile / Settings]
+    H --> A
+```
+
+### 7.3 Modular Architecture
+
+```mermaid
+classDiagram
+    class Screens {
+        +HomeScreen
+        +DetailScreen
+        +OrderScreen
+        +ProfileScreen
+    }
+    class Widgets {
+        +CoffeeCard
+        +CategoryChip
+        +CustomizationOption
+        +BottomNavBar
+    }
+    class Models {
+        +CoffeeItem
+        +Category
+        +Order
+    }
+
+    Screens --> Widgets
+    Screens --> Models
+    Widgets --> Models
+```
+
+### 7.4 Project Structure
+
+```
+coffee/
+├── android/
+├── ios/
+├── lib/
+│   ├── screens/
+│   ├── widgets/
+│   ├── models/
+│   └── main.dart
+├── asstes/
+│   └── image/
+├── test/
+├── pubspec.yaml
+├── CONTRIBUTING.md
+├── SECURITY.md
+└── README.md
+```
+
+> The project follows Flutter and Dart conventions with linting rules enabled via `analysis_options.yaml`. It is open-source under the **MIT License**.
+
+---
+
+## 8. Project 6: Google-Homepage — Multi-Platform Flutter Clone
+
+**Repository:** [https://github.com/shatilsarower/Google-Homepage](https://github.com/shatilsarower/Google-Homepage)
+
+### 8.1 Description
+
+A Flutter clone of the **Google homepage**, built to explore **multi-platform deployment**. The repository contains platform-specific folders for **Android, iOS, Linux, macOS, Web, Windows**, and **test** — demonstrating Flutter’s cross-platform reach beyond mobile.
+
+### 8.2 Multi-Platform Build Targets
+
+```mermaid
+flowchart TD
+    A[Flutter Codebase<br/>lib/] --> B[Android<br/>android/]
+    A --> C[iOS<br/>ios/]
+    A --> D[Linux<br/>linux/]
+    A --> E[macOS<br/>macos/]
+    A --> F[Web<br/>web/]
+    A --> G[Windows<br/>windows/]
+
+    B --> B1[APK / AAB]
+    C --> C1[IPA / App Store]
+    D --> D1[Linux Bundle]
+    E --> E1[macOS App]
+    F --> F1[HTML / JS / CanvasKit]
+    G --> G1[Windows EXE / MSIX]
+```
+
+### 8.3 UI Layout Structure
+
+```mermaid
+flowchart TD
+    A[Google Homepage Clone] --> B[Top Bar]
+    A --> C[Center Content]
+    A --> D[Footer]
+
+    B --> B1[Gmail Link]
+    B --> B2[Images Link]
+    B --> B3[Apps Grid Icon]
+    B --> B4[Profile Avatar]
+
+    C --> C1[Google Logo]
+    C --> C2[Search Bar]
+    C --> C3[Search Buttons]
+    C --> C4[Language Links]
+
+    D --> D1[About]
+    D --> D2[Advertising]
+    D --> D3[Business]
+    D --> D4[How Search Works]
+    D --> D5[Privacy]
+    D --> D6[Terms]
+    D --> D7[Settings]
+```
+
+### 8.4 Key Learning Outcomes
+
+- Flutter web rendering modes (HTML vs CanvasKit)
+- Platform-specific folder structure and build configuration
+- Responsive layout that adapts across screen sizes
+- Web font loading and asset management across platforms
+
+---
+
+## 9. Downloadable Files
+
+All files referenced in this README are available for download directly from the repository and GitHub’s raw file service.
+
+### 9.1 Download the README
+
+| Format | Download Link |
+|---|---|
+| **Markdown (this file)** | [Download `README.md`](https://raw.githubusercontent.com/shatilsarower/shatilsarower.github.io/master/README.md) |
+| **Repository archive (ZIP)** | [Download full repository ZIP](https://github.com/shatilsarower/shatilsarower.github.io/archive/refs/heads/master.zip) |
+| **Portfolio HTML** | [Download `index.html`](https://raw.githubusercontent.com/shatilsarower/shatilsarower.github.io/master/index.html) |
+
+### 9.2 Download Individual Projects
+
+| Project | Clone Command | ZIP Download |
+|---|---|---|
+| **chatapp3** | `git clone https://github.com/shatilsarower/chatapp3.git` | [Download ZIP](https://github.com/shatilsarower/chatapp3/archive/refs/heads/master.zip) |
+| **NewsApp** | `git clone https://github.com/shatilsarower/NewsApp.git` | [Download ZIP](https://github.com/shatilsarower/NewsApp/archive/refs/heads/master.zip) |
+| **bmi-calculator** | `git clone https://github.com/shatilsarower/bmi-calculator.git` | [Download ZIP](https://github.com/shatilsarower/bmi-calculator/archive/refs/heads/master.zip) |
+| **managment** | `git clone https://github.com/shatilsarower/managment.git` | [Download ZIP](https://github.com/shatilsarower/managment/archive/refs/heads/master.zip) |
+| **coffee** | `git clone https://github.com/shatilsarower/coffee.git` | [Download ZIP](https://github.com/shatilsarower/coffee/archive/refs/heads/master.zip) |
+| **Google-Homepage** | `git clone https://github.com/shatilsarower/Google-Homepage.git` | [Download ZIP](https://github.com/shatilsarower/Google-Homepage/archive/refs/heads/master.zip) |
+
+### 9.3 Download Mermaid Diagrams
+
+The Mermaid diagrams in this README can be rendered in any Markdown viewer that supports Mermaid (GitHub, GitLab, VS Code with extensions, Obsidian, Notion). To download the raw Mermaid source for a specific diagram, copy the code block into a `.mmd` file and open it with the [Mermaid Live Editor](https://mermaid.live/).
+
+---
+
+## 10. License & Attribution
+
+### 10.1 Repository License
+
+No root-level `LICENSE` file is visible in the `shatilsarower.github.io` repository. The site includes third-party libraries and theme assets. Before redistributing the repository or reusing its theme assets in another project:
 
 - Confirm the license of the original portfolio theme.
 - Preserve required copyright and license notices.
 - Confirm the licenses for Bootstrap, jQuery, Popper, Modernizr, Animate.css, LineIcons, Font Awesome, and any other bundled assets.
 - Add a repository-level license only when the repository owner has the rights to license all content covered by it.
 
-A repository license does not automatically replace the licenses of included third-party dependencies or images.
+### 10.2 Project Licenses
+
+| Project | License |
+|---|---|
+| **coffee** | MIT License |
+| **bmi-calculator** | Companion project to The App Brewery’s Complete Flutter Development Bootcamp |
+| **Google-Homepage** | No explicit license stated |
+| **chatapp3** | No explicit license stated |
+| **NewsApp** | No explicit license stated |
+| **managment** | Includes `SECURITY.md`; no explicit license stated |
+
+### 10.3 Third-Party Acknowledgments
+
+- **Flutter** and **Dart** teams for the framework and tooling.
+- **Bootstrap** and **jQuery** for the portfolio’s responsive foundation.
+- **Font Awesome** and **Google Fonts** for iconography and typography.
+- **Ruben Vaalt** for the BMI Calculator design inspiration.
+- **NewsAPI.org** for the news data API.
+- **Firebase** for backend infrastructure in `chatapp3`.
+- **GetX** community for state management patterns in `managment`.
 
 ---
 
-## Project links
-
-- **Live website:** https://shatilsarower.github.io/
-- **Source code:** https://github.com/shatilsarower/shatilsarower.github.io
-- **GitHub Pages documentation:** https://docs.github.com/en/pages
-- **Bootstrap 4.3 documentation:** https://getbootstrap.com/docs/4.3/
-- **jQuery documentation:** https://api.jquery.com/
-
----
-
-*This README documents the repository's currently observable implementation. Update it whenever the page structure, dependencies, deployment configuration, or project behavior changes.*
+> 
