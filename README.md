@@ -1,14 +1,12 @@
-This README is a consolidated, modern reference for the `shatilsarower.github.io` repository and the key projects on the profile. It is designed as a single file you can download, commit, and use immediately.
-
----
-
 # 🚀 Sarwar Murshed Shatil — Developer Portfolio & Project Showcase
 
 > **Live site:** [https://shatilsarower.github.io/](https://shatilsarower.github.io/)  
 > **Repository:** [https://github.com/shatilsarower/shatilsarower.github.io](https://github.com/shatilsarower/shatilsarower.github.io)  
-> **Profile:** [https://github.com/shatilsarower](https://github.com/shatilsarower)
+> **Profile:** [https://github.com/shatilsarower](https://github.com/shatilsarower)  
+> **Location:** Dhaka, Bangladesh · UTC+06:00  
+> **Contact:** sshatil233@gmail.com · [LinkedIn](https://www.linkedin.com/in/shatil-sarower-85211b19b/) · [X/Twitter](https://twitter.com/Shatil86797790)
 
-A lightweight, single-page developer portfolio built with **HTML5, CSS3, JavaScript, Bootstrap 4, and jQuery**, published as a static site through **GitHub Pages**. The repository also serves as the central hub for the projects pinned on the profile — Flutter applications covering state management, API integration, UI design, Firebase backends, and multi-platform development.
+A lightweight, single-page developer portfolio built with **HTML5, CSS3, JavaScript, Bootstrap 4, and jQuery**, published as a static site through **GitHub Pages**. This repository also serves as the central documentation hub for the Flutter projects pinned on the profile — covering real-time Firebase backends, REST API consumption, custom UI composition, GetX state management, and multi-platform deployment.
 
 ---
 
@@ -22,7 +20,7 @@ A lightweight, single-page developer portfolio built with **HTML5, CSS3, JavaScr
 6. [Project 4: managment — GetX State Management](#6-project-4-managment--getx-state-management)
 7. [Project 5: coffee — Flutter UI Showcase](#7-project-5-coffee--flutter-ui-showcase)
 8. [Project 6: Google-Homepage — Multi-Platform Flutter Clone](#8-project-6-google-homepage--multi-platform-flutter-clone)
-9. [Downloadable Files](#9-downloadable-files)
+9. [Downloadable Files & Assets](#9-downloadable-files--assets)
 10. [License & Attribution](#10-license--attribution)
 
 ---
@@ -31,9 +29,16 @@ A lightweight, single-page developer portfolio built with **HTML5, CSS3, JavaScr
 
 ### 1.1 Overview
 
-The portfolio is a **static, no-build-step website**. It does not use a server-side application, database, API layer, frontend framework, package manager, or compilation step. The browser loads `index.html`, then loads the referenced stylesheet, image, icon, and JavaScript files.
+The portfolio is a **static, no-build-step website**. It does not use a server-side application, database, API layer, frontend framework, package manager, or compilation step. The browser loads `index.html`, then loads the referenced stylesheets, images, icons, and JavaScript files.
 
-The site acts as a compact professional profile where visitors can read an introductory profile, review education and technical skills, find contact and social links, explore programming-contest profiles, review experience, and open linked CV/resume documents.
+The site acts as a compact professional profile where visitors can:
+
+1. Read an introductory profile
+2. Review education and technical skills
+3. Find contact and social links
+4. Explore programming-contest and problem-solving profiles
+5. Review experience information
+6. Open linked CV / resume documents
 
 ### 1.2 How the Website Works — Request Flow
 
@@ -63,8 +68,6 @@ sequenceDiagram
 
 ### 1.3 JavaScript Initialization Flow
 
-The `main.js` script registers handlers for page load and scroll events. Its behavior includes hiding the preloader after the window loads, adding/removing the `sticky` class on the navigation bar, updating the active navigation item based on scroll position, closing the collapsed navigation after a link click, animating skill progress bars when they enter the viewport, and writing the document’s last-modified date and current page URL into the footer.
-
 ```mermaid
 flowchart TD
     A[Window Load Event] --> B[Hide Preloader]
@@ -86,26 +89,26 @@ flowchart TD
 
 ### 1.4 Technology Stack
 
-| Technology | Role in the Portfolio | Version / Note |
-|---|---|---|
-| **HTML5** | Page structure and portfolio content | — |
-| **CSS3** | Theme styling, layout, responsive rules, visual effects | — |
-| **JavaScript** | Page interactions and dynamic UI behavior | Vanilla JS + jQuery plugins |
-| **Bootstrap** | Responsive grid, layout utilities, component styling | 4.3.1 |
-| **jQuery** | DOM manipulation and event handling | 1.12.4 |
-| **Popper.js** | Bootstrap 4 positioning dependency | — |
-| **Modernizr** | Browser feature detection | 3.7.1 |
-| **jQuery Appear** | Viewport-entry detection for skill bars | — |
-| **jQuery Easing** | Easing functions for smooth scrolling | — |
-| **Scrolling Nav** | Navigation/scrolling helper | — |
-| **Animate.css** | CSS animation classes | — |
-| **LineIcons** | Icon font/classes | — |
-| **Font Awesome** | Additional icons (CDN) | 5.8.1 |
-| **Google Fonts** | Montserrat and Open Sans | Loaded from CDN |
+| Technology          | Role in the Portfolio                          | Version / Note      |
+|---------------------|------------------------------------------------|---------------------|
+| **HTML5**           | Page structure and portfolio content           | —                   |
+| **CSS3**            | Theme styling, layout, responsive rules        | —                   |
+| **JavaScript**      | Page interactions and dynamic UI behavior      | Vanilla + jQuery    |
+| **Bootstrap**       | Responsive grid, layout utilities              | 4.3.1               |
+| **jQuery**          | DOM manipulation and event handling            | 1.12.4              |
+| **Popper.js**       | Bootstrap 4 positioning dependency             | —                   |
+| **Modernizr**       | Browser feature detection                      | 3.7.1               |
+| **jQuery Appear**   | Viewport-entry detection for skill bars        | —                   |
+| **jQuery Easing**   | Easing functions for smooth scrolling          | —                   |
+| **Scrolling Nav**   | Navigation / scrolling helper                  | —                   |
+| **Animate.css**     | CSS animation classes                          | —                   |
+| **LineIcons**       | Icon font / classes                            | —                   |
+| **Font Awesome**    | Additional icons (CDN)                         | 5.8.1               |
+| **Google Fonts**    | Montserrat and Open Sans                       | Loaded from CDN     |
 
 ### 1.5 Repository Structure (Runtime-Oriented)
 
-```
+```text
 shatilsarower.github.io/
 ├── index.html
 └── new resume/
@@ -132,11 +135,9 @@ shatilsarower.github.io/
                     └── modernizr-3.7.1.min.js
 ```
 
-> **Path note:** The asset paths include directory names with spaces (`new resume`, `jackson-master 2`). These work as referenced by the current HTML, but they are more awkward to maintain and easier to mistype.
+> **Path note:** Asset paths currently contain directory names with spaces (`new resume`, `jackson-master 2`). They work as referenced, but renaming them requires updating every matching `href` / `src` in `index.html`.
 
 ### 1.6 Run Locally
-
-You only need **Git** and a **local static HTTP server**. No Node.js, npm, or framework installation is required.
 
 ```bash
 git clone https://github.com/shatilsarower/shatilsarower.github.io.git
@@ -144,13 +145,11 @@ cd shatilsarower.github.io
 python3 -m http.server 8000
 ```
 
-Open `http://localhost:8000` in the browser. Using an HTTP server is preferable to opening `index.html` directly with a `file://` URL because it more closely matches production.
+Open `http://localhost:8000`. Using an HTTP server is preferable to a `file://` URL.
 
 ### 1.7 Deployment with GitHub Pages
 
-The repository name follows GitHub’s user-site naming convention: `shatilsarower.github.io`. The site is currently reachable at `https://shatilsarower.github.io/`.
-
-**Publish an update:**
+The repository name follows GitHub’s user-site convention (`username.github.io`). The live site is served from the `master` branch root.
 
 ```bash
 git status
@@ -159,25 +158,24 @@ git commit -m "Update portfolio content"
 git push origin master
 ```
 
-For standard branch-based deployment, the source files should be served from the `master` branch and the root directory.
-
 ---
 
 ## 2. Project Ecosystem — Overview
 
-The profile pins six repositories that collectively demonstrate a focused journey through **Flutter development** — from Firebase-backed real-time chat to API-driven data consumption, custom UI engineering, state management with GetX, and multi-platform deployment.
+The profile pins six repositories that demonstrate a focused journey through **Flutter development** — from Firebase-backed real-time chat to API-driven data consumption, custom UI engineering, state management with GetX, and multi-platform deployment.
 
 ```mermaid
 mindmap
   root((shatilsarower<br/>Project Ecosystem))
     Backend & Realtime
       chatapp3
-        Firebase
+        Firebase Auth
+        Cloud Firestore
         Real-time messaging
     API & Data
       NewsApp
         NewsAPI.org
-        HTTP requests
+        HTTP + JSON parsing
         7 news categories
     UI & Custom Design
       BMI Calculator
@@ -185,17 +183,26 @@ mindmap
         Multi-screen navigation
         GestureDetector
       coffee
-        Modular UI
-        Component-based architecture
+        Modular UI components
+        Beautiful static design
       Google-Homepage
-        Multi-platform
-        Web, Android, iOS, Linux, macOS, Windows
+        Multi-platform targets
+        Web + Android + iOS + Desktop
     State Management
       managment
-        GetX
-        Reactive state
+        GetX reactive state
         Dependency injection
+        Controllers & bindings
 ```
+
+| Project            | Primary Focus                     | Key Technologies                  | Stars (approx.) |
+|--------------------|-----------------------------------|-----------------------------------|-----------------|
+| **chatapp3**       | Real-time chat                    | Flutter, Firebase Auth, Firestore | 4               |
+| **NewsApp**        | REST API consumption              | Flutter, http, NewsAPI.org        | 4               |
+| **bmi-calculator** | Custom UI & multi-screen flow     | Flutter, Themes, Navigator        | 1               |
+| **managment**      | GetX state management             | Flutter, GetX                     | 5               |
+| **coffee**         | Beautiful modular UI              | Flutter                           | 7               |
+| **Google-Homepage**| Multi-platform clone              | Flutter (all platforms)           | 1               |
 
 ---
 
@@ -205,9 +212,9 @@ mindmap
 
 ### 3.1 Description
 
-A Flutter chat application built on **Firebase** as the backend. The project demonstrates real-time data synchronization, user authentication, and cloud messaging — the core building blocks of a production chat system.
+A Flutter chat application built on **Firebase** as the backend. It demonstrates real-time data synchronization, user authentication, and the core building blocks of a production-ready messaging system.
 
-### 3.2 Architecture Flow
+### 3.2 High-Level Architecture
 
 ```mermaid
 flowchart LR
@@ -233,13 +240,32 @@ flowchart LR
     FCM -->|Push notification| Client
 ```
 
-### 3.3 Key Technical Decisions
+### 3.3 Message Lifecycle Sequence
 
-| Decision | Rationale |
-|---|---|
-| **Firebase Auth** | Offloads authentication complexity; supports email/password and federated providers. |
-| **Cloud Firestore** | Real-time listeners eliminate the need for polling; offline persistence improves reliability on unstable networks. |
-| **Flutter UI** | Single codebase for Android and iOS; hot reload accelerates iteration on chat interactions. |
+```mermaid
+sequenceDiagram
+    participant UserA as User A (Sender)
+    participant App as Flutter App
+    participant Auth as Firebase Auth
+    participant FS as Cloud Firestore
+    participant UserB as User B (Receiver)
+
+    UserA->>App: Type message + Send
+    App->>Auth: Verify current user session
+    Auth-->>App: UID + display name
+    App->>FS: add({text, senderId, timestamp})
+    FS-->>App: Document written
+    FS-->>UserB: Real-time snapshot update
+    UserB->>App: New message appears in list
+```
+
+### 3.4 Key Technical Decisions
+
+| Decision            | Rationale                                                                 |
+|---------------------|---------------------------------------------------------------------------|
+| **Firebase Auth**   | Offloads authentication complexity; supports email/password & federated providers |
+| **Cloud Firestore** | Real-time listeners eliminate polling; offline persistence helps on unstable networks |
+| **Flutter**         | Single codebase for Android & iOS; hot reload accelerates UI iteration     |
 
 ---
 
@@ -260,12 +286,12 @@ sequenceDiagram
     participant Service as News Service
     participant API as NewsAPI.org
 
-    User->>UI: Open category (e.g., Technology)
+    User->>UI: Open category (e.g. Technology)
     UI->>Service: requestNews(category)
     Service->>API: GET /v2/top-headlines?category=technology&apiKey=...
     API-->>Service: JSON response (articles array)
-    Service->>Service: Parse JSON → List<Article>
-    Service-->>UI: Return List<Article>
+    Service->>Service: Parse JSON → List&lt;Article&gt;
+    Service-->>UI: Return List&lt;Article&gt;
     UI->>UI: Build ListView with article cards
     UI-->>User: Display headlines, images, sources
 ```
@@ -291,8 +317,8 @@ flowchart TD
 
 ### 4.4 Key Learning Outcomes
 
-- Consuming a third-party REST API with `http` package
-- Handling asynchronous operations with `FutureBuilder` and `async/await`
+- Consuming a third-party REST API with the `http` package
+- Handling asynchronous operations with `FutureBuilder` / `async`–`await`
 - Mapping JSON to Dart model classes
 - Managing loading, success, and error states in the UI
 
@@ -332,39 +358,48 @@ classDiagram
         +MaterialApp
         +ThemeData
     }
-    class InputScreen {
-        +GenderSelector
-        +HeightSlider
-        +WeightAgeStepper
-        +CalculateButton
+    class InputPage {
+        +build()
+        +gender cards
+        +height slider
+        +weight/age steppers
     }
-    class ResultScreen {
-        +BMIValue
-        +CategoryLabel
-        +Interpretation
-        +RecalculateButton
+    class ResultsPage {
+        +bmi value
+        +category text
+        +interpretation
     }
     class ReusableCard {
         +Color colour
-        +Widget cardChild
+        +Widget child
         +Function onPress
     }
+    class RoundIconButton {
+        +IconData icon
+        +Function onPressed
+    }
 
-    BMICalculatorApp --> InputScreen
-    BMICalculatorApp --> ResultScreen
-    InputScreen --> ReusableCard
-    ResultScreen --> ReusableCard
+    BMICalculatorApp --> InputPage
+    BMICalculatorApp --> ResultsPage
+    InputPage --> ReusableCard
+    InputPage --> RoundIconButton
+    ResultsPage --> ReusableCard
 ```
 
-### 5.4 What the Project Demonstrates
+### 5.4 BMI Calculation Logic
 
-- Flutter themes for coherent branding
-- Multi-page apps with `Navigator` and routes
-- Extracting and refactoring widgets
-- Passing functions as parameters
-- `GestureDetector` for non-tap gestures
-- Custom colour palettes with hex codes
-- `const` vs `final` in Dart
+```
+BMI = weight (kg) / [height (m)]²
+```
+
+Categories (WHO approximate):
+
+| BMI Range     | Category     |
+|---------------|--------------|
+| < 18.5        | Underweight  |
+| 18.5 – 24.9   | Normal       |
+| 25.0 – 29.9   | Overweight   |
+| ≥ 30.0        | Obese        |
 
 ---
 
@@ -374,58 +409,40 @@ classDiagram
 
 ### 6.1 Description
 
-A dedicated exploration of **state management in Flutter using GetX**. The project serves as a learning ground for reactive state, dependency injection, and context-free navigation.
+A focused Flutter project created to learn **state management with GetX**. It demonstrates reactive variables, controllers, dependency injection, and route management without the boilerplate of Provider or Bloc.
 
-### 6.2 GetX Reactive State Flow
-
-```mermaid
-flowchart LR
-    subgraph Reactive["Reactive State Layer"]
-        O[Observable Variable<br/>.obs]
-        C[Controller<br/>GetxController]
-    end
-
-    subgraph UI["UI Layer"]
-        OB[Obx Widget]
-        GB[GetBuilder Widget]
-    end
-
-    subgraph Navigation["Navigation Layer"]
-        GR[Get.to / Get.off]
-        GS[Get.snackbar / Get.dialog]
-    end
-
-    C -->|updates| O
-    O -->|notifies| OB
-    O -->|notifies| GB
-    OB -->|rebuilds| UI
-    GB -->|rebuilds| UI
-    C -->|triggers| GR
-    C -->|triggers| GS
-```
-
-### 6.3 Dependency Injection with GetX
+### 6.2 GetX Architecture Flow
 
 ```mermaid
-flowchart TD
-    A[App Initialization] --> B[Get.put Permanent Controller]
-    A --> C[Get.lazyPut Lazy Controller]
+flowchart TB
+    subgraph UI Layer
+        View[Widgets / Screens]
+    end
 
-    B --> D[Controller available globally]
-    C --> E[Controller created on first access]
+    subgraph GetX Layer
+        Controller[GetxController]
+        Obs[Rx / .obs variables]
+        Binding[Bindings / Dependency Injection]
+    end
 
-    D --> F[UI accesses controller via Get.find]
-    E --> F
-    F --> G[Controller state shared across screens]
+    View -->|GetBuilder / Obx| Controller
+    Controller -->|update / reactive| Obs
+    Binding -->|lazyPut / put| Controller
+    View -->|Get.to / Get.off| Binding
 ```
 
-### 6.4 Key Learning Outcomes
+### 6.3 Typical Controller Pattern
 
-- `GetxController` lifecycle management
-- Reactive state with `.obs` and `Obx`
-- Dependency injection with `Get.put`, `Get.lazyPut`, and `Get.find`
-- Context-free navigation and dialogs/snackbars/bottom sheets
-- Separation of business logic from UI
+```dart
+class CounterController extends GetxController {
+  var count = 0.obs;          // reactive variable
+
+  void increment() => count++;
+  void decrement() => count--;
+}
+```
+
+UI rebuilds automatically when `count` changes via `Obx(() => Text('${controller.count}'))`.
 
 ---
 
@@ -435,75 +452,29 @@ flowchart TD
 
 ### 7.1 Description
 
-A visually rich, coffee-themed Flutter UI concept. The project demonstrates **clean, modular UI design**, smooth transitions, and component-based architecture. It is intended as both inspiration and a foundation for UI-centric Flutter experiments.
+A simple, beautiful coffee-shop style application UI built with Flutter. Emphasis is on **modular component design**, clean visual hierarchy, and polished static screens rather than backend integration.
 
-### 7.2 UI Screen Flow
+### 7.2 UI Component Hierarchy
 
 ```mermaid
 flowchart TD
-    A[Home / Coffee Selection] --> B[Product Detail]
-    B --> C[Customization Options]
-    C --> D[Order Summary]
-    D --> E[Checkout / Confirmation]
+    A[Main Screen] --> B[Header / AppBar]
+    A --> C[Category Chips / Tabs]
+    A --> D[Product Grid / List]
+    A --> E[Bottom Navigation]
 
-    A --> F[Search / Filter]
-    F --> A
-
-    A --> G[Favorites]
-    G --> A
-
-    A --> H[Profile / Settings]
-    H --> A
+    D --> F[Product Card]
+    F --> G[Image]
+    F --> H[Title & Price]
+    F --> I[Add / Favorite Button]
 ```
 
-### 7.3 Modular Architecture
+### 7.3 Design Goals
 
-```mermaid
-classDiagram
-    class Screens {
-        +HomeScreen
-        +DetailScreen
-        +OrderScreen
-        +ProfileScreen
-    }
-    class Widgets {
-        +CoffeeCard
-        +CategoryChip
-        +CustomizationOption
-        +BottomNavBar
-    }
-    class Models {
-        +CoffeeItem
-        +Category
-        +Order
-    }
-
-    Screens --> Widgets
-    Screens --> Models
-    Widgets --> Models
-```
-
-### 7.4 Project Structure
-
-```
-coffee/
-├── android/
-├── ios/
-├── lib/
-│   ├── screens/
-│   ├── widgets/
-│   ├── models/
-│   └── main.dart
-├── asstes/
-│   └── image/
-├── test/
-├── pubspec.yaml
-├── CONTRIBUTING.md
-├── SECURITY.md
-└── README.md
-```
-
-> The project follows Flutter and Dart conventions with linting rules enabled via `analysis_options.yaml`. It is open-source under the **MIT License**.
+- Consistent spacing and typography
+- Reusable card and button components
+- Smooth visual transitions
+- Ready foundation for later state management or API integration
 
 ---
 
@@ -513,124 +484,76 @@ coffee/
 
 ### 8.1 Description
 
-A Flutter clone of the **Google homepage**, built to explore **multi-platform deployment**. The repository contains platform-specific folders for **Android, iOS, Linux, macOS, Web, Windows**, and **test** — demonstrating Flutter’s cross-platform reach beyond mobile.
+A Flutter recreation of the classic Google homepage that targets **multiple platforms** (Android, iOS, Web, Linux, macOS, Windows). It demonstrates Flutter’s “write once, run everywhere” capability with a familiar UI.
 
 ### 8.2 Multi-Platform Build Targets
 
 ```mermaid
-flowchart TD
-    A[Flutter Codebase<br/>lib/] --> B[Android<br/>android/]
-    A --> C[iOS<br/>ios/]
-    A --> D[Linux<br/>linux/]
-    A --> E[macOS<br/>macos/]
-    A --> F[Web<br/>web/]
-    A --> G[Windows<br/>windows/]
-
-    B --> B1[APK / AAB]
-    C --> C1[IPA / App Store]
-    D --> D1[Linux Bundle]
-    E --> E1[macOS App]
-    F --> F1[HTML / JS / CanvasKit]
-    G --> G1[Windows EXE / MSIX]
+flowchart LR
+    Source[Flutter Source Code] --> Android
+    Source --> iOS
+    Source --> Web
+    Source --> Linux
+    Source --> macOS
+    Source --> Windows
 ```
 
-### 8.3 UI Layout Structure
+### 8.3 Typical Development Commands
 
-```mermaid
-flowchart TD
-    A[Google Homepage Clone] --> B[Top Bar]
-    A --> C[Center Content]
-    A --> D[Footer]
-
-    B --> B1[Gmail Link]
-    B --> B2[Images Link]
-    B --> B3[Apps Grid Icon]
-    B --> B4[Profile Avatar]
-
-    C --> C1[Google Logo]
-    C --> C2[Search Bar]
-    C --> C3[Search Buttons]
-    C --> C4[Language Links]
-
-    D --> D1[About]
-    D --> D2[Advertising]
-    D --> D3[Business]
-    D --> D4[How Search Works]
-    D --> D5[Privacy]
-    D --> D6[Terms]
-    D --> D7[Settings]
+```bash
+flutter run -d chrome          # Web
+flutter run -d android         # Android emulator / device
+flutter run -d macos           # macOS desktop
+flutter build web              # Production web build
+flutter build apk --release    # Android release APK
 ```
-
-### 8.4 Key Learning Outcomes
-
-- Flutter web rendering modes (HTML vs CanvasKit)
-- Platform-specific folder structure and build configuration
-- Responsive layout that adapts across screen sizes
-- Web font loading and asset management across platforms
 
 ---
 
-## 9. Downloadable Files
+## 9. Downloadable Files & Assets
 
-All files referenced in this README are available for download directly from the repository and GitHub’s raw file service.
+All files generated for this documentation package are available in the accompanying downloadable archive / folder:
 
-### 9.1 Download the README
+| File | Description |
+|------|-------------|
+| `README.md` | This hyper-detailed modern README (the file you are reading) |
+| `ARCHITECTURE.md` | Condensed architecture notes + mermaid source for the portfolio site |
+| `PROJECTS_OVERVIEW.md` | One-page summary of the six Flutter projects with key links |
+| `diagrams/` | Folder containing individual mermaid / flowchart source files for easy reuse |
+| `portfolio-structure.txt` | Plain-text tree of the current repository layout |
 
-| Format | Download Link |
-|---|---|
-| **Markdown (this file)** | [Download `README.md`](https://raw.githubusercontent.com/shatilsarower/shatilsarower.github.io/master/README.md) |
-| **Repository archive (ZIP)** | [Download full repository ZIP](https://github.com/shatilsarower/shatilsarower.github.io/archive/refs/heads/master.zip) |
-| **Portfolio HTML** | [Download `index.html`](https://raw.githubusercontent.com/shatilsarower/shatilsarower.github.io/master/index.html) |
+### How to obtain the files
 
-### 9.2 Download Individual Projects
+1. **From this conversation / artifact package** – download the entire `shatilsarower-portfolio-readme` folder.
+2. **Commit to the repository** – copy `README.md` (and optionally the supporting files) into the root of `shatilsarower.github.io` and push.
+3. **GitHub raw links** (after commit):
 
-| Project | Clone Command | ZIP Download |
-|---|---|---|
-| **chatapp3** | `git clone https://github.com/shatilsarower/chatapp3.git` | [Download ZIP](https://github.com/shatilsarower/chatapp3/archive/refs/heads/master.zip) |
-| **NewsApp** | `git clone https://github.com/shatilsarower/NewsApp.git` | [Download ZIP](https://github.com/shatilsarower/NewsApp/archive/refs/heads/master.zip) |
-| **bmi-calculator** | `git clone https://github.com/shatilsarower/bmi-calculator.git` | [Download ZIP](https://github.com/shatilsarower/bmi-calculator/archive/refs/heads/master.zip) |
-| **managment** | `git clone https://github.com/shatilsarower/managment.git` | [Download ZIP](https://github.com/shatilsarower/managment/archive/refs/heads/master.zip) |
-| **coffee** | `git clone https://github.com/shatilsarower/coffee.git` | [Download ZIP](https://github.com/shatilsarower/coffee/archive/refs/heads/master.zip) |
-| **Google-Homepage** | `git clone https://github.com/shatilsarower/Google-Homepage.git` | [Download ZIP](https://github.com/shatilsarower/Google-Homepage/archive/refs/heads/master.zip) |
-
-### 9.3 Download Mermaid Diagrams
-
-The Mermaid diagrams in this README can be rendered in any Markdown viewer that supports Mermaid (GitHub, GitLab, VS Code with extensions, Obsidian, Notion). To download the raw Mermaid source for a specific diagram, copy the code block into a `.mmd` file and open it with the [Mermaid Live Editor](https://mermaid.live/).
+```
+https://raw.githubusercontent.com/shatilsarower/shatilsarower.github.io/master/README.md
+```
 
 ---
 
 ## 10. License & Attribution
 
-### 10.1 Repository License
-
-No root-level `LICENSE` file is visible in the `shatilsarower.github.io` repository. The site includes third-party libraries and theme assets. Before redistributing the repository or reusing its theme assets in another project:
-
-- Confirm the license of the original portfolio theme.
-- Preserve required copyright and license notices.
-- Confirm the licenses for Bootstrap, jQuery, Popper, Modernizr, Animate.css, LineIcons, Font Awesome, and any other bundled assets.
-- Add a repository-level license only when the repository owner has the rights to license all content covered by it.
-
-### 10.2 Project Licenses
-
-| Project | License |
-|---|---|
-| **coffee** | MIT License |
-| **bmi-calculator** | Companion project to The App Brewery’s Complete Flutter Development Bootcamp |
-| **Google-Homepage** | No explicit license stated |
-| **chatapp3** | No explicit license stated |
-| **NewsApp** | No explicit license stated |
-| **managment** | Includes `SECURITY.md`; no explicit license stated |
-
-### 10.3 Third-Party Acknowledgments
-
-- **Flutter** and **Dart** teams for the framework and tooling.
-- **Bootstrap** and **jQuery** for the portfolio’s responsive foundation.
-- **Font Awesome** and **Google Fonts** for iconography and typography.
-- **Ruben Vaalt** for the BMI Calculator design inspiration.
-- **NewsAPI.org** for the news data API.
-- **Firebase** for backend infrastructure in `chatapp3`.
-- **GetX** community for state management patterns in `managment`.
+- Portfolio theme assets are based on publicly available Bootstrap / jQuery templates.  
+- Individual Flutter projects are original learning exercises by **Sarwar Murshed Shatil** (`@shatilsarower`).  
+- Third-party services used: Firebase, NewsAPI.org, Google Fonts, Font Awesome.  
+- Feel free to fork, star, and adapt the code for learning purposes.
 
 ---
 
-> 
+### 🙋‍♂️ About the Author
+
+**Sarwar Murshed Shatil**  
+Passionate developer from Bangladesh currently learning Flutter, Data Structures & Algorithms, Object-Oriented Programming, Clean Code, and System Design.  
+Looking to collaborate on open-source projects.
+
+- 📧 **Email:** sshatil233@gmail.com  
+- 🌐 **Portfolio:** https://shatilsarower.github.io/  
+- 💼 **LinkedIn:** [shatil-sarower](https://www.linkedin.com/in/shatil-sarower-85211b19b/)  
+- 🐦 **X:** [@Shatil86797790](https://twitter.com/Shatil86797790)
+
+---
+
+*This README was generated as a comprehensive, modern reference for the `shatilsarower.github.io` repository and the key Flutter projects on the profile. Update it whenever the page structure, dependencies, or project behavior changes.*
